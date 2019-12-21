@@ -1,14 +1,10 @@
 os: linux
 sudo: required
+compiler: clang
 language: "minimal"
 services:
 - docker
 
-jobs:
-  include:
-  - name: "compile"
-    script:
-    - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/compile.sh
 
 notifications:
     email: false
