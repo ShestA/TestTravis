@@ -8,10 +8,10 @@ jobs:
   include:
   - name: "quality"
     script:
-    - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/duplication.sh shesta/testtravis
+    - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/duplication.sh shesta/bootstrapcpp
   - name: "compile"
     script:
-    - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/compile.sh shesta/testtravis
+    - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/compile.sh shesta/bootstrapcpp
 
 notifications:
     email: false
