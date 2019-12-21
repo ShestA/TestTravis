@@ -6,9 +6,6 @@ services:
 
 jobs:
   include:
-  - name: "quality"
-    script:
-    - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/duplication.sh shesta/bootstrapcpp
   - name: "compile"
     script:
     - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/compile.sh shesta/bootstrapcpp
