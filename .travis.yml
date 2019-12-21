@@ -8,7 +8,7 @@ jobs:
   include:
   - name: "compile"
     script:
-    - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/compile.sh shesta/bootstrapcpp
+    - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/compile.sh
 
 notifications:
     email: false
