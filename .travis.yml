@@ -1,3 +1,26 @@
 os: linux
 sudo: required
 language: cpp
+services:
+- docker
+
+before install:
+- docker pull shesta/bootstrapcpp
+
+jobs:
+  include:
+  - name: "checks"
+    script:
+    - docker run -t -v  $(pwd):/opt/builder/ --entrypoint ./scripts/checks.sh shesta/bootstrapcpp
+  - name: "tests"
+    script:
+    - docker run -t -v  $(pwd):/opt/builder/ --entrypoint ./scripts/tests.sh shesta/bootstrapcpp
+  - name: "quality"
+    script:
+    - ./scripts/genenv.sh
+    - docker run --env-file .env -v `pwd`:`pwd` -w `pwd` -t ./scripts/coverage.sh
+    # The bot has gone...
+    # - docker run --env-file .env -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap-cpp scripts/duplication.sh
+
+notifications:
+    email: false
