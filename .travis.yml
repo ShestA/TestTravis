@@ -1,1 +1,3 @@
-v
+os: linux
+sudo: required
+language: cpp
