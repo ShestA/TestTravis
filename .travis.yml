@@ -9,6 +9,7 @@ jobs:
   include:
   - name: "checks"
     script:
+    - ./scripts/checks.sh
     - docker run -v `pwd`:`pwd` -w `pwd` --cap-add=SYS_PTRACE -t ./scripts/checks.sh
   - name: "tests"
     script:
