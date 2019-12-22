@@ -4,9 +4,17 @@ language: cpp
 services:
 - docker
 
+before install:
+- docker pull shesta/testtravis
+- docker run -d -p 127.0.0.1:80:4567 shesta/testtravis /bin/sh -c "cd /root/testtravis/scripts; checks.sh start;"
+- docker ps -a
+- docker run shesta/testtravis /bin/sh -c "cd /root/testtravis/scripts; checks.sh start"
 
 jobs:
   include:
+  -name: "test"
+   script:
+   - checks.sh
   - name: "checks"
     script:
     - ShestA/TestTravis ./scripts/checks.sh
